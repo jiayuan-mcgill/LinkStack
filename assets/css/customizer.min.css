@@ -13,23 +13,23 @@ body{
 :root{
     --bs-heading-color: #0c112e;
 
-    --bs-primary: #563ae8;
-    --bs-primary-shade-80: #0d0c35;
-    --bs-primary-shade-60: #231d5f;
-    --bs-primary-shade-40: #3c348e;
-    --bs-primary-shade-20: #463ea3;
-    --bs-primary-tint-90: #f1effa;
-    --bs-primary-tint-80: #d5d2f5;
-    --bs-primary-tint-60: #a9a4ed;
-    --bs-primary-tint-40: #7d79e5;
-    --bs-primary-tint-20: #5150dd;
+    --bs-primary: #d71920;
+    --bs-primary-shade-80: #320101;
+    --bs-primary-shade-60: #720303;
+    --bs-primary-shade-40: #8b0304;
+    --bs-primary-shade-20: #b11116;
+    --bs-primary-tint-90: #eec2c3;
+    --bs-primary-tint-80: #ec9093;
+    --bs-primary-tint-60: #d36164;
+    --bs-primary-tint-40: #c94347;
+    --bs-primary-tint-20: #d13238;
     --bs-primary-rgb: 86, 58, 232;
     
-    --bs-secondary: #1d1467;
-    --bs-secondary-shade-80: #120f2e;
-    --bs-secondary-shade-60: #231d5f;
-    --bs-secondary-shade-40: #2e286e;
-    --bs-secondary-shade-20: #322b7d;
+    --bs-secondary: #3d4f5d;
+    --bs-secondary-shade-80: #04355b;
+    --bs-secondary-shade-60: #173e5b;
+    --bs-secondary-shade-40: #224159;
+    --bs-secondary-shade-20: #324554;
     --bs-secondary-tint-90: #eeeafa;
     --bs-secondary-tint-80: #d6d1f6;
     --bs-secondary-tint-60: #aba2ed;
@@ -37,7 +37,7 @@ body{
     --bs-secondary-tint-20: #554fdd;
     --bs-secondary-rgb: 29, 20, 103;
 
-    --bs-info: #8a3de6;
+    --bs-info: #0babe3;
     --bs-info-shade-80: #2d0e5f;
     --bs-info-shade-60: #481e8f;
     --bs-info-shade-40: #692dbf;

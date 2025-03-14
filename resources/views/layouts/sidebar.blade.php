@@ -1,5 +1,9 @@
 @php
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use App\Models\User;
 $usrhandl = Auth::user()->littlelink_name;
 @endphp
@@ -458,7 +462,7 @@ $usrhandl = Auth::user()->littlelink_name;
 					</form>
 					</li>
                   </ul>
-                </li>
+                </li> 
               </ul>
             </div>
           </div>
@@ -494,7 +498,7 @@ $usrhandl = Auth::user()->littlelink_name;
                 @php if(file_exists(base_path("assets/dashboard-themes/header.png"))){$headerImage = asset('assets/dashboard-themes/header.png');}else{$headerImage = asset('assets/images/dashboard/top-header-overlay.png');} @endphp
                   <img src="{{$headerImage}}" draggable="false" alt="header" class="img-fluid w-100 h-100 animated-scaleX">
                   <img src="{{$headerImage}}" draggable="false" alt="header" class="theme-color-purple-img img-fluid w-100 h-100 animated-scaleX">
-                  <img src="{{$headerImage}}" draggable="false" alt="header" class="theme-color-blue-img img-fluid w-100 h-100 animated-scaleX">
+                  <!-- <img src="{{$headerImage}}" draggable="false" alt="header" class="theme-color-blue-img img-fluid w-100 h-100 animated-scaleX"> -->
                   <img src="{{$headerImage}}" draggable="false" alt="header" class="theme-color-green-img img-fluid w-100 h-100 animated-scaleX">
                   <img src="{{$headerImage}}" draggable="false" alt="header" class="theme-color-yellow-img img-fluid w-100 h-100 animated-scaleX">
                   <img src="{{$headerImage}}" draggable="false" alt="header" class="theme-color-pink-img img-fluid w-100 h-100 animated-scaleX">
@@ -563,8 +567,8 @@ $usrhandl = Auth::user()->littlelink_name;
                 <span class="ms-2 "> {{__('messages.Light')}}</span>
               </div>
             </div>
-            <hr class="hr-horizontal"> 
-            <div class="d-flex align-items-center justify-content-between">
+            <!-- <hr class="hr-horizontal">  -->
+            <!-- <div class="d-flex align-items-center justify-content-between">
             <h5 class="mt-4 mb-3">{{__('messages.Color Customizer')}}</h5>
             <button class="btn btn-transparent p-0 border-0" data-value="theme-color-default" data-info="#079aa2" data-setting="color-mode1" data-name="color" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Default">
               <svg class="icon-18" width="18"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -573,12 +577,12 @@ $usrhandl = Auth::user()->littlelink_name;
               </svg>
             </button>
             </div>
-            <div class="grid-cols-5 mb-4 d-grid gap-x-2">
+            <div class="grid-cols-4 mb-4 d-grid gap-x-3">
               <div class="btn btn-border bg-transparent"  data-value="theme-color-blue"   data-info="#573BFF" data-setting="color-mode1" data-name="color" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Theme-1">
               <svg  class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" > <circle cx="12" cy="12" r="10" fill="#00C3F9" /> <path d="M2,12 a1,1 1 1,0 20,0" fill="#573BFF" /></svg>
               </div>
-              <div class="btn btn-border bg-transparent" data-value="theme-color-gray" data-info="#FD8D00" data-setting="color-mode1" data-name="color" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Theme-2">
-              <svg  class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" > <circle cx="12" cy="12" r="10" fill="#91969E" /> <path d="M2,12 a1,1 1 1,0 20,0" fill="#FD8D00" /></svg>
+              <div class="btn btn-border bg-transparent" data-value="theme-color-gray" data-info="#d71920" data-setting="color-mode1" data-name="color" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Theme-2">
+              <svg  class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" > <circle cx="12" cy="12" r="10" fill="#414042" /> <path d="M2,12 a1,1 1 1,0 20,0" fill="#d71920" /></svg>
               </div>
               <div class="btn btn-border bg-transparent"  data-value="theme-color-red" data-info="#366AF0" data-setting="color-mode1" data-name="color" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Theme-3">
               <svg  class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" > <circle cx="12" cy="12" r="10" fill="#DB5363" /> <path d="M2,12 a1,1 1 1,0 20,0" fill="#366AF0" /></svg>
@@ -590,7 +594,7 @@ $usrhandl = Auth::user()->littlelink_name;
               <svg  class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" > <circle cx="12" cy="12" r="10" fill="#E586B3" /> <path d="M2,12 a1,1 1 1,0 20,0" fill="#25C799" /></svg>
               </div>
               
-            </div>
+            </div> -->
             {{-- <hr class="hr-horizontal">
             <h5 class="mb-3 mt-4">Scheme Direction</h5>
             <div class="d-grid gap-3 grid-cols-2 mb-4">
@@ -681,59 +685,32 @@ $usrhandl = Auth::user()->littlelink_name;
               </div>
               @php
               try {
-                $redirectURL = url('').'/'.'u/'.Auth::user()->id;
+                $qrCodeData = url('@'.Auth::user()->littlelink_name);
 
-                $argValues = config('advanced-config.qr_code_gradient') ?? [0, 0, 0, 0, 0, 0, 'diagonal'];
-                list($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7) = $argValues;
+                $renderer = new ImageRenderer(
+                    new RendererStyle(400),
+                    new SvgImageBackEnd()
+                );
+                $writer = new Writer($renderer);
 
-                if (extension_loaded('imagick')) {
-                  $imgSrc = QrCode::format('png')->gradient($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7)->eye('circle')->style('round')->size(1000)->generate($redirectURL);
-                  $imgSrc = base64_encode($imgSrc);
-                  $imgSrc = 'data:image/png;base64,' . $imgSrc;
-                  $imgType = 'png';
-                } else {
-                  $imgSrc = QrCode::gradient($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7)->eye('circle')->style('round')->size(1000)->generate($redirectURL);
-                  $imgSrc = base64_encode($imgSrc);
-                  $imgSrc = 'data:image/svg+xml;base64,' . $imgSrc;
-                  $imgType = 'svg';
-                }
+                $svgImageData = $writer->writeString($qrCodeData);
 
-              } catch(exception $e) {
-                $imgSrc = url('/assets/linkstack/images/themes/no-preview.png');
-                $imgType = NULL;
-              }
+                $svgImageBase64 = base64_encode($svgImageData);
+
+                $imgSrc = 'data:image/svg+xml;base64,' . $svgImageBase64;
+              } catch(exception $e) {echo '<p class="text-center pt-5">{{__("messages.QR code could not be generated")}}</p>'; if(auth()->user()->role == 'admin'){echo "<p class='ps-3'>{{__('messages.Reason:')}} <pre class='ps-4'>".$e->getMessage()."</pre></p>";}}
               @endphp
               <div class="modal-body">
                 <div class="bd-example">
-                  <img id="generatedImage" draggable="false" src="@php if(isset($imgSrc)){echo $imgSrc;} @endphp" style="width:100%;height:auto;" class="bd-placeholder-img img-thumbnail">
+                  <img draggable="false" src="@php if(isset($imgSrc)){echo $imgSrc;} @endphp" style="width:100%;height:auto;" class="bd-placeholder-img img-thumbnail">
               </div>
               </div>
               <div class="modal-footer">
-                @if($imgType == 'png')
-                  <button type="button" class="btn btn-info" id="downloadButton">{{__('messages.Download')}}</button>
-                @endif
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('messages.Close')}}</button>
               </div>
           </div>
       </div>
       </div>
-
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var downloadButton = document.getElementById("downloadButton");
-            var generatedImage = document.getElementById("generatedImage");
-        
-            downloadButton.addEventListener("click", function() {
-                var format = generatedImage.getAttribute("data-format") || "png";
-                var downloadLink = document.createElement("a");
-                downloadLink.href = generatedImage.src;
-                downloadLink.download = "generated_image." + format;
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-            });
-        });
-        </script>
 
     <!-- Library Bundle Script -->
     <script src="{{asset('assets/js/core/libs.min.js')}}"></script>
@@ -813,6 +790,7 @@ $usrhandl = Auth::user()->littlelink_name;
 <script src="{{ asset('assets/js/Sortable.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-block-ui.js') }}"></script>
 <script src="{{ asset('assets/js/main-dashboard.js') }}"></script>
+
 
 @stack('sidebar-scripts')
 

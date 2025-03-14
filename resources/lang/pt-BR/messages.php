@@ -3,7 +3,6 @@
 /*
 |--------------------------------------------------------------------------
 | Traduçao feita por Rodolfo Buaiz com ajuda do DeepL
-| Complementada manualmente por Leonardo Colman Lopes
 |--------------------------------------------------------------------------
  */
 
@@ -21,8 +20,8 @@ return array(
 	'Log in' => 'Fazer login',
 	'Register' => 'Registro',
 
-	'Dashboard' => 'Painel de Controle',
-	'Copyright' => 'Direitos Autorais',
+	'Dashboard' => 'Painel de controle',
+	'Copyright' => 'Direitos autorais',
 	'Made with' => 'Feito com',
 	'by' => 'por',
 
@@ -41,7 +40,7 @@ return array(
 		    |
 	*/
 
-	'Example page' => 'Página de Exemplo',
+	'Example page' => 'Página de exemplo',
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -59,7 +58,7 @@ return array(
 	'Login to stay connected' => 'Faça login para permanecer conectado',
 	'Email' => 'Email',
 	'Password' => 'Senha',
-	'Remember Me' => 'Lembrar-me',
+	'Remember Me' => 'Lembrar de mim',
 	'Forgot Password?' => 'Esqueceu sua senha?',
 	'or sign in with other accounts?' => 'ou fazer login com outras contas?',
 	'Don’t have an account?' => 'Não tem uma conta?',
@@ -123,11 +122,11 @@ return array(
 
 	'Settings' => 'Configurações',
 	'Scheme' => 'Esquema',
-	'Auto' => 'Auto',
+	'Auto' => 'Automotivo',
 	'Dark' => 'Escuro',
-	'Light' => 'Claro',
-	'Color Customizer' => 'Personalizador de Cores',
-	'Sidebar Color' => 'Cor da Barra Lateral',
+	'Light' => 'Luz',
+	'Color Customizer' => 'Personalizador de cores',
+	'Sidebar Color' => 'Cor da barra lateral',
 	'Default' => 'Padrão',
 	'Color' => 'Cor',
 	'Transparent' => 'Transparente',
@@ -278,7 +277,7 @@ return array(
 	'Brands' => 'Marcas',
 	'Color name' => 'nome_da_cor',
 	'Color HEX' => 'Cor HEX',
-	'Color HEX1' => 'Cor HEX1',
+	'Color HEX1' => 'Cor HEX',
 	'Update icon' => 'Ícone de atualização',
 	'See all icons' => 'Ver todos os ícones',
 
@@ -295,10 +294,10 @@ return array(
 	'Add' => 'Adicionar',
 	'Block' => 'Bloco',
 	'Blocks' => 'Blocos: ',
-	'Select Block' => 'Selecionar bloco',
+	'Select Block' => 'Selecionar bloco ',
 	'Toggle Dropdown' => 'Alternar menu suspenso',
 	'Cancel' => 'Cancelar',
-	'Save and Add More' => 'Salvar e Adicionar Mais',
+	'Save and Add More' => 'Salvar e adicionar mais',
 	'Click to change link blocks' => 'Clique para alterar os blocos de links',
 	'Click for a list of available link blocks' => 'Clique para obter uma lista dos blocos de links disponíveis',
 
@@ -312,7 +311,7 @@ return array(
 	*/
 
 	'My Links' => 'Meus links',
-	'Add new Link' => 'Adicionar novo Link',
+	'Add new Link' => 'Adicionar novo link',
 	'No Link Added' => 'Você ainda não adicionou nenhum link.',
 	'Download' => 'Baixar',
 	'Preview' => ' Prévia:',
@@ -336,13 +335,13 @@ return array(
 		      |
 	*/
 
-	'My Profile' => 'Meu Perfil',
-	'Profile Picture' => 'Foto do Perfil',
+	'My Profile' => 'Meu perfil',
+	'Profile Picture' => 'Foto do perfil',
 	'Page URL' => 'URL da página',
-	'Display name' => 'Nome de Exibição',
+	'Display name' => 'Nome de exibição',
 	'Name' => 'Nome:',
 	'Page Description' => 'Descrição da página',
-	'Show checkmark' => 'Mostrar Selo Verificado',
+	'Show checkmark' => 'Mostrar marca de seleção',
 	'disableverified' => 'Você é um usuário verificado. Essa configuração permite ocultar a marca de verificação em sua página.',
 	'Show share button' => 'Mostrar botão de compartilhamento',
 	'disablesharebutton' => 'Essa configuração permite ocultar o botão de compartilhamento em sua página.',
@@ -359,7 +358,7 @@ return array(
 	'Change email' => 'Alterar e-mail',
 	'Change password' => 'Alterar senha',
 	'Export user data' => 'Exportar dados do usuário',
-	'Export your user data' => 'Exporte seus dados de usuário',
+	'Export your user data' => 'Exporte seus dados de usuário para transferir para uma instância diferente.',
 	'Export all data' => 'Exportar todos os dados',
 	'Export links only' => 'Exportar somente links',
 	'Import user data' => 'Importar dados do usuário',
@@ -407,7 +406,7 @@ return array(
 
 	'Theme Updater' => 'Atualizador de temas',
 	'Theme name' => 'Nome do tema:',
-	'Update status' => 'Estado da atualização:',
+	'Update status' => 'Status da atualização:',
 	'Version' => 'Versão:',
 	'Error!' => 'Erro!',
 	'Update manually' => 'Atualizar manualmente',
@@ -491,7 +490,7 @@ return array(
 	'Last seen' => 'Visto pela última vez',
 	'Status' => 'Status',
 	'Action' => 'Ação',
-	'N/A' => 'N/D',
+	'N/A' => 'N/A',
 	'Pending' => 'Pendente',
 	'Verified' => 'Verificado',
 	'Approved' => 'Aprovado',
@@ -524,25 +523,25 @@ return array(
 |
  */
 
-	'Advanced Config' => 'Configuração Avançada',
-	'Take Backup' => 'Fazer Backup',
-	'All Backups' => 'Todos os Backups',
+	'Advanced Config' => 'Configuração avançada',
+	'Take Backup' => 'Fazer backup',
+	'All Backups' => 'Todos os backups',
 	'Diagnosis' => 'Diagnóstico',
 
-	'Alternative Config Editor' => 'Editor de Configuração Alternativo',
-	'Use the Alternative Config Editor to edit the config directly' => 'Use o Editor de Configuração Alternativo para editar a configuração diretamente',
+	'Alternative Config Editor' => 'Editor de configuração alternativo',
+	'Use the Alternative Config Editor to edit the config directly' => 'Use o Alternative Config Editor para editar a configuração diretamente',
 
 	'PHP info' => 'Informações sobre PHP',
 	'Display debugging information about your PHP setup' => 'Exibir informações de depuração sobre sua configuração do PHP',
 
 	'Jump directly to:' => 'Ir diretamente para:',
 
-	'Application' => 'Aplicação',
-	'Panel settings' => 'Configurações do Painel',
+	'Application' => 'Aplicativo',
+	'Panel settings' => 'Configurações do painel',
 	'Security' => 'Segurança',
 	'Advanced' => 'Avançado',
 	'SMTP' => 'SMTP',
-	'Footer links' => 'Links de Rodapé',
+	'Footer links' => 'Links de rodapé',
 	'Debug' => 'Depurar',
 	'Language' => 'Idioma',
 
@@ -556,7 +555,7 @@ return array(
 	'Backup' => 'Backup',
 	'You can back up your entire instance:' => 'Você pode fazer o backup de toda a sua instância:',
 	'The backup system won’t save more than two backups at a time' => 'O sistema de backup não salvará mais de dois backups por vez.',
-	'Backup Instance' => 'Instância de Backup',
+	'Backup Instance' => 'Instância de backup',
 
 	'wtrue' => 'Tudo está funcionando como esperado!',
 	'wfalse' => 'Esse arquivo não pode ser gravado. Isso pode impedir a operação adequada.',
@@ -574,7 +573,7 @@ return array(
 	'Write access.description.2-3' => 'funcionam como esperado, as entradas marcadas com um',
 	'Write access.description.3-3' => 'não.',
 	'File' => 'Arquivo',
-	'Dependencies' => 'Dependências',
+	'Dependencies' => '',
 	'Required PHP modules' => 'Módulos PHP necessários.',
 	'PHP Extension' => 'Extensão PHP',
 	'No backups found' => 'Não foram encontrados backups',
@@ -582,7 +581,7 @@ return array(
 
 	'Go back' => 'Voltar',
 
-	'Strings with a # in front of them are comments and wont affect anything' => 'Textos um # na frente são comentários e não afetam nada.',
+	'Strings with a # in front of them are comments and wont affect anything' => 'As cadeias de caracteres com um # na frente são comentários e não afetam nada.',
 
 	'Download your updater backups:' => 'Faça o download dos backups do atualizador:',
 	'The server will never store more that two backups at a time' => 'O servidor nunca armazenará mais de dois backups por vez.',
@@ -592,11 +591,11 @@ return array(
 	'SMTP.description.alt' => '(Salve as alterações com "Aplicar alterações" abaixo)',
 	'Enable' => 'Ativar',
 	'Custom SMTP server:' => 'Servidor SMTP personalizado:',
-	'Host' => 'Host',
-	'Port' => 'Porta',
-	'Username' => 'Nome de Usuário',
+	'Host' => 'Anfitrião',
+	'Port' => 'Porto',
+	'Username' => 'Nome de usuário',
 	'Encryption type' => 'Tipo de criptografia',
-	'From address' => 'Endereço "De:"',
+	'From address' => 'Do endereço',
 	'Apply changes' => 'Aplicar alterações',
 	'Test E-Mail setup:' => 'Teste a configuração do e-mail:',
 	'Send Test E-Mail' => 'Enviar e-mail de teste',
@@ -717,13 +716,13 @@ return array(
 	'LinkStack setup' => 'Configuração do LinkStack',
 
 	'Setup LinkStack' => 'Configuração do LinkStack',
-	'Welcome to the setup for LinkStack!' => 'Vamos à configuração do LinkStack!',
+	'Welcome to the setup for LinkStack!' => 'Bem-vindo à configuração do LinkStack!',
 	'This setup will:' => 'Essa configuração irá:',
-	'Check the server dependencies' => 'Verificar as dependências do servidor',
-	'Setup the database' => 'Configurar o banco de dados',
-	'Create the admin user' => 'Criar o usuário administrador',
-	'Configure the app' => 'Configurar o aplicativo',
-	'Choose a language' => 'Escolher um idioma',
+	'Check the server dependencies' => '1. Verifique as dependências do servidor',
+	'Setup the database' => '2. Configurar o banco de dados',
+	'Create the admin user' => '3. Crie o usuário administrador',
+	'Configure the app' => '4. Configurar o aplicativo',
+	'Choose a language' => 'Escolha um idioma',
 
 	'Next' => 'Próximo',
 	'Yes' => 'Sim',
@@ -784,17 +783,17 @@ return array(
 	'update.windows' => 'Os usuários do Windows podem usar o atualizador alternativo. Esse atualizador não criará um backup. Use-o a seu próprio critério.',
 	'Update automatically' => 'Atualizar automaticamente',
 
-	'Updating' => 'Atualizando',
-	'Creating backup' => 'Criando Backup',
+	'Updating' => 'Atualização',
+	'Creating backup' => 'Criação de backup',
 	'Preparing update' => 'Preparando a atualização',
 	'No new version' => 'Nenhuma nova versão',
 	'There is no new version available' => 'Não há uma nova versão disponível',
-	'Admin Panel' => 'Painel do Administrador',
-	'Finishing up' => 'Finalizando',
+	'Admin Panel' => 'Painel do administrador',
+	'Finishing up' => 'Finalização',
 	'Success!' => 'Sucesso!',
-	'The update was successful' => 'A atualização foi bem-sucedida e agora você pode retornar ao Painel do Administrador',
-	'View the release notes' => 'Veja as notas de atualização',
-	'Run again' => 'Executar novamente',
+	'The update was successful' => 'A atualização foi bem-sucedida e agora você pode retornar ao Admin Panel.',
+	'View the release notes' => 'Veja as notas de versão',
+	'Run again' => 'Corra novamente',
 	'Error' => 'Erro',
 	'Something went wrong with the update' => 'Algo deu errado com a atualização',
 
@@ -810,7 +809,7 @@ return array(
 # Title Tag
 	'Backup.title' => 'Backup',
 
-	'The backup was successful' => 'O backup foi bem-sucedido e agora você pode retornar ao Painel do Administrador ou ver todos os seus backups.',
+	'The backup was successful' => 'O backup foi bem-sucedido e agora você pode retornar ao Admin Panel ou ver todos os seus backups.',
 
 /*
 |--------------------------------------------------------------------------
@@ -874,7 +873,7 @@ return array(
 	'URL' => 'URL',
 	'Show website icon on button' => 'Mostrar o ícone do site no botão',
 
-	'Select a predefined site' => 'Selecione um site predefinido',
+	'Select a predefined site' => 'Selecione um local predefinido',
 	'Enter the link URL' => 'Digite o URL do link',
 
 	'Spacing height' => 'Altura do espaçamento',
@@ -920,12 +919,12 @@ return array(
 |
  */
 
-	'Maintenance Mode' => 'Modo de Manutenção',
+	'Maintenance Mode' => 'Modo de manutenção',
 	'We are performing scheduled site maintenance at this time' => 'Estamos realizando uma manutenção programada do site no momento.',
 	'Please check back with us later' => 'Entre em contato conosco mais tarde.',
 	'Admin options:' => 'Opções de administração:',
 	'Turn off' => 'Desligar',
-	'Warn.Disable.Maintenance' => 'Você está prestes a desativar o Modo de Manutenção. Tem certeza?',
+	'Warn.Disable.Maintenance' => 'Você está prestes a desativar o Modo de manutenção. Tem certeza?',
 
 /*
 |--------------------------------------------------------------------------
@@ -994,7 +993,7 @@ return array(
  */
 
 	'footer.Home' => 'Início',
-	'footer.Terms' => 'Termos de Uso',
+	'footer.Terms' => 'Termos',
 	'footer.Privacy' => 'Privacidade',
 	'footer.Contact' => 'Contato',
 
@@ -1029,7 +1028,7 @@ return array(
  */
 
 	'previous' => 'Anterior',
-	'next' => 'Próximo',
+	'next' => 'Próximo &raquo;',
 
 	'Add new link' => 'Adicionar novo link',
 

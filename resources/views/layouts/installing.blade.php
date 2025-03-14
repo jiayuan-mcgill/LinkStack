@@ -163,7 +163,6 @@ button:hover {
 
 .btn {
     color: #FFF !important;
-    height: 62px;
 }
 
 

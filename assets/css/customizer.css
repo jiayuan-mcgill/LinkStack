@@ -16,7 +16,7 @@ body {
 
 :root {
   --bs-heading-color: #0c112e;
-  --bs-primary: #3a57e8;
+  --bs-primary: #d71920;
   --bs-primary-shade-80: #0c112e;
   --bs-primary-shade-60: #17235d;
   --bs-primary-shade-40: #23348b;
@@ -198,7 +198,7 @@ body {
   --bs-gray-dark-tint-20: #5d6166;
   --bs-gray-dark-rgb: 52, 58, 64;
   --bs-heading-color: #002732;
-  --bs-primary: #00C3F9;
+  --bs-primary: #d71920;
   --bs-primary-shade-80: #002732;
   --bs-primary-shade-60: #004e64;
   --bs-primary-shade-40: #007595;
@@ -380,7 +380,7 @@ body {
   --bs-gray-dark-tint-20: #5d6166;
   --bs-gray-dark-rgb: 52, 58, 64;
   --bs-heading-color: #1d1e20;
-  --bs-primary: #91969E;
+  --bs-primary: #d71920;
   --bs-primary-shade-80: #1d1e20;
   --bs-primary-shade-60: #3a3c3f;
   --bs-primary-shade-40: #575a5f;
@@ -562,7 +562,7 @@ body {
   --bs-gray-dark-tint-20: #5d6166;
   --bs-gray-dark-rgb: 52, 58, 64;
   --bs-heading-color: #2c1114;
-  --bs-primary: #DB5363;
+  --bs-primary: #d71920;
   --bs-primary-shade-80: #2c1114;
   --bs-primary-shade-60: #582128;
   --bs-primary-shade-40: #83323b;
@@ -744,7 +744,7 @@ body {
   --bs-gray-dark-tint-20: #5d6166;
   --bs-gray-dark-rgb: 52, 58, 64;
   --bs-heading-color: #2f1504;
-  --bs-primary: #EA6A12;
+  --bs-primary: #d71920;
   --bs-primary-shade-80: #2f1504;
   --bs-primary-shade-60: #5e2a07;
   --bs-primary-shade-40: #8c400b;
@@ -926,7 +926,7 @@ body {
   --bs-gray-dark-tint-20: #5d6166;
   --bs-gray-dark-rgb: 52, 58, 64;
   --bs-heading-color: #2e1b24;
-  --bs-primary: #E586B3;
+  --bs-primary: #d71920;
   --bs-primary-shade-80: #2e1b24;
   --bs-primary-shade-60: #5c3648;
   --bs-primary-shade-40: #89506b;

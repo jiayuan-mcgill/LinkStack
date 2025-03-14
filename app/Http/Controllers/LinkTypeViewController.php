@@ -1,102 +1,168 @@
 <?php
+
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
 
 use Illuminate\Http\Request;
+
+
 use App\Models\LinkType;
 use App\Models\Link;
+
 use App\Models\Button;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\File;
+use micro\FormFactory;
+
+use DB;
 
 class LinkTypeViewController extends Controller
 {
-    public function getParamForm($typename, $linkId = 0)
+
+
+    public function getParamForm($typeid, $linkId = 0)
     {
-        $data = [
-            'title' => '',
-            'link' => '',
-            'button_id' => 0,
-            'buttons' => [],
-        ];
-    
+        $linkType = LinkType::select('params', 'typename')->where('id', $typeid)->First();
+
+
+        $data['params'] = '';
+        $data['link_title'] = '';
+        $data['link_url'] = '';
+        $data['button_id'] = 0;
+
         if ($linkId) {
             $link = Link::find($linkId);
-            $data['title'] = $link->title;
-            $data['link'] = $link->link;
-            if (Route::currentRouteName() != 'showButtons') {
-                $data['button_id'] = $link->button_id;
-            }
-    
-            if (!empty($link->type_params) && is_string($link->type_params)) {
-                $typeParams = json_decode($link->type_params, true);
-                if (is_array($typeParams)) {
-                    $data = array_merge($data, $typeParams);
-                }
-            }
+            $data['params'] = json_decode($link['type_params']);
+            $data['link_title'] = $link->title;
+            $data['link_url'] = $link->link;
+            if (Route::currentRouteName() != 'showButtons') {$data['button_id'] = $link->button_id;}
         }
-        if ($typename === 'predefined') {
-            $buttons = Button::select()->orderBy('name', 'asc')->get();
+
+        if (!empty($linkType) && $linkType->typename === 'predefined') {
+            // get buttons list if showing predefined form
+            $buttons = Button::select('name')->orderBy('name', 'asc')->get();
             foreach ($buttons as $btn) {
                 $data['buttons'][] = [
                     'name' => $btn->name,
-                    'title' => $btn->alt,
-                    'exclude' => $btn->exclude,
-                    'selected' => ($linkId && isset($link) && $link->button_id == $btn->id),
+                    'title' => ucwords($btn->name),
+                    'selected' => (is_object($data['params']) && $data['params']->button === $btn->name)
                 ];
             }
-            return view('components.pageitems.predefined-form', $data);
-        }
-    
-        // Set the block asset context before returning the view
-        setBlockAssetContext($typename);
-    
-        return view($typename . '.form', $data);
-    }
+//echo "<pre>"; print_r($data['params']); exit;
 
-    public function blockAsset(Request $request, $type)
-    {
-        $asset = $request->query('asset');
-    
-        // Prevent directory traversal in $type
-        if (preg_match('/\.\.|\/|\\\\/', $type)) {
-            abort(403, 'Unauthorized action.');
         }
-    
-        // Define allowed file extensions
-        $allowedExtensions = ['js', 'css', 'img', 'svg', 'gif', 'jpg', 'jpeg', 'png', 'mp4', 'mp3'];
-    
-        $extension = strtolower(pathinfo($asset, PATHINFO_EXTENSION));
-        if (!in_array($extension, $allowedExtensions)) {
-            return response('File type not allowed', Response::HTTP_FORBIDDEN);
+        return view('components.pageitems.'. $linkType->typename.'-form', $data);
+
+        $jsonForm = FormFactory::jsonForm();
+        try {
+            $json = $linkType->params;
+        } catch (\Throwable $th) {
+            //throw $th;
         }
-    
-        $basePath = realpath(base_path("blocks/$type"));
-    
-        $fullPath = realpath(base_path("blocks/$type/$asset"));
-    
-        if (!$fullPath || !file_exists($fullPath) || strpos($fullPath, $basePath) !== 0) {
-            return response('File not found', Response::HTTP_NOT_FOUND);
+
+
+        // dynamiclly create params for predefined website to fill a select list with available buttons
+        if (!empty($linkType) && $linkType->typename === 'predefined') {
+            $buttons = Button::select('name')->orderBy('name', 'asc')->get();
+           $pdParams[] = ['tag' => 'select', 'name' => 'button', 'id'=> 'button'];
+            foreach ($buttons as $btn) {
+                $pdParams[0]['value'][] = [
+                    'tag'=>'option',
+                    'label' => ucwords($btn->name),
+                    'value' => $btn->name
+                ];
+
+            }
+            $pdParams[] = ['tag' => 'input', 'name' => 'link_title', 'id' => 'link_title', 'name' => 'link_title', 'tip' => 'Leave blank for default title'];
+            $pdParams[] = ['tag' => 'input', 'name' => 'link_url', 'id' => 'link_url', 'name' => 'link_url', 'tip' => 'Enter the url address for this site.'];
+
+            $json = json_encode($pdParams);
         }
-    
-        // Map file extensions to MIME types
-        $mimeTypes = [
-            'js' => 'application/javascript',
-            'css' => 'text/css',
-            'img' => 'image/png',
-            'svg' => 'image/svg+xml',
-            'gif' => 'image/gif',
-            'jpg' => 'image/jpeg',
-            'jpeg' => 'image/jpeg',
-            'png' => 'image/png',
-            'mp4' => 'video/mp4',
-            'mp3' => 'audio/mpeg',
-        ];
-    
-        // Determine the MIME type using the mapping
-        $mimeType = $mimeTypes[$extension] ?? 'application/octet-stream';
-    
-        return response()->file($fullPath, [
-            'Content-Type' => $mimeType
-        ]);
+
+        if (empty($json)) {
+            $json =
+                <<<EOS
+            [{
+                "tag": "input",
+                "id": "link_title",
+                "for": "link_title",
+                "label": "Link Title *",
+                "type": "text",
+                "name": "link_title",
+                "class": "form-control",
+                "tip": "Enter a title for this link",
+                "required": "required"
+            },
+            {
+                "tag": "input",
+                "id": "link",
+                "for": "link",
+                "label": "Link Address *",
+                "type": "text",
+                "name": "link_title",
+                "class": "form-control",
+                "tip": "Enter the website address",
+                "required": "required"
+            }
+            ]
+            EOS;
+        }
+
+
+        if ($linkId) {
+
+            $link = Link::find($linkId);
+        }
+
+
+        // cleanup json
+        $params = json_decode($json, true);
+        $idx = 0;
+        foreach ($params as $p) {
+            if (!array_key_exists('for', $p))
+                $params[$idx]['for'] = $p['name'];
+
+            if (!array_key_exists('label', $p))
+                $params[$idx]['label'] = ucwords(preg_replace('/[^a-zA-Z0-9-]/', ' ', $p['name']));
+
+            if (!array_key_exists('label', $p) || !str_contains($p['class'], 'form-control')) {
+                $params[$idx]['class'] = " form-control";
+            }
+
+            // get existing values if any
+            if ($link) {
+                $typeParams = json_decode($link['type_params']);
+
+
+ //echo "<pre>";
+//  print_r($typeParams);
+                  //print_r($params[$idx]);
+                 //echo "</pre>";
+
+                if ($typeParams && property_exists($typeParams, $params[$idx]['name'])) {
+                    if (key_exists('value', $params[$idx]) && is_array($params[$idx]['value'])) {
+
+                        $optIdx = 0;
+                        foreach ($params[$idx]['value'] as $option) {
+                            //echo $option['value']."<br />";
+                            //echo $typeParams->{$params[$idx]['name']};
+                            if ($option['value'] == $typeParams->{$params[$idx]['name']}) {
+                                $params[$idx]['value'][$optIdx]['selected'] = true;
+                                break;
+                            }
+                            //echo $key ." = ".$value;
+                            $optIdx++;
+                        }
+                    } else {
+                        $params[$idx]['value'] = $typeParams->{$params[$idx]['name']};
+                    }
+                }
+
+            }
+
+            $idx++;
+        }
+        $json = json_encode($params);
+
+
+        echo $jsonForm->render($json);
     }
 }

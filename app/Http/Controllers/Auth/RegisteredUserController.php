@@ -11,36 +11,33 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller
 {
-
+    /**
+     * Display the registration view.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('auth.register');
     }
 
-    public function validateHandle(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'littlelink_name' => 'required|string|max:50|unique:users|regex:/^[\p{L}0-9-_]+$/u',
-        ]);
-    
-        if ($validator->fails()) {
-            return response()->json(['valid' => false]);
-        }
-    
-        return response()->json(['valid' => true]);
-    }
-
+    /**
+     * Handle an incoming registration request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'littlelink_name' => 'required|string|max:50|unique:users|regex:/^[\p{L}0-9-_]+$/u',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|confirmed|min:8',
         ]);
 
         $name = $request->input('name');
@@ -51,13 +48,23 @@ class RegisteredUserController extends Controller
             $block = 'no';
         }
 
-        Auth::login($user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'littlelink_name' => $request->littlelink_name,
-            'password' => Hash::make($request->password),
-            'role' => 'user',
-        ]));
+        if(DB::table('users')->where('littlelink_name', $request->name)->exists())
+        {
+            Auth::login($user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'user',
+            ]));
+        } else {
+            Auth::login($user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'littlelink_name' => $request->name,
+                'password' => Hash::make($request->password),
+                'role' => 'user',
+            ]));
+        }
 
         $user->block = $block;
         $user->save();
@@ -66,20 +73,16 @@ class RegisteredUserController extends Controller
             $user = $request->name;
             $email = $request->email;
             
-            if(env('REGISTER_AUTH') == 'verified'){
-                if(env('MANUAL_USER_VERIFICATION') == true){
-                try {
-                Mail::send('auth.user-confirmation', ['user' => $user, 'email' => $email], function ($message) use ($user) {
-                    $message->to(env('ADMIN_EMAIL'))
-                            ->subject('New user registration');
-                });
-            } catch (\Exception $e) {}
-        }
-    
             try {
-            $request->user()->sendEmailVerificationNotification();
-            } catch (\Exception $e) {}
-        }
+            Mail::send('auth.user-confirmation', ['user' => $user, 'email' => $email], function ($message) use ($user) {
+                $message->to(env('ADMIN_EMAIL'))
+                        ->subject('New user registration');
+            });
+        } catch (\Exception $e) {}
+
+        try {
+        $request->user()->sendEmailVerificationNotification();
+        } catch (\Exception $e) {}
 
         event(new Registered($user));
 

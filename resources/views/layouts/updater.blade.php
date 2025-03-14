@@ -133,7 +133,6 @@ body {
 button {
     border-style: none;
     background-color: #0085ff;
-    margin: 5px;
 }
 button:hover {
     background-color: #0065c1;
@@ -143,24 +142,6 @@ button:hover {
 
 .btn {
     color: #FFF !important;
-}
-
-.noteslink:hover {
-            color: #006fd5;
-            text-shadow: 0px 6px 7px rgba(23, 10, 6, 0.66);
-}
-
-.alert-box {
-  padding: 10px 15px;
-  margin: 10px 0;
-  border-left: 5px solid;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.alert-box-error {
-  background-color: #f0cccc;
-  color: #a94442;
-  border-color: #db5552;
 }
 
 </style>
